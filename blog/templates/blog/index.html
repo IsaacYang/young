@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+    <h1>Blog list</h1>
+{% endblock title %}
+
+{% block content %}
+    <div class="container " id='blog_index'>
+        {% for post in post_list %}
+        <div class="row justify-content-center mt-4">
+            <div class="col-sm ">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ post.title }}</h4>
+                            <p class="card-text">{{ post.content|safe |slice:":400" }}</p>
+                            <a name="btn_1" id="btn_1" class="btn btn-primary" href="{% url 'blog:post_detail' post.id %}" role="button">Read More</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            {{ post.author }} | {{ post.created_on }}
+                        </div>
+                    </div>   
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+    
+    
